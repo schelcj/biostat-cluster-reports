@@ -14,7 +14,7 @@ plot:
 		-fontsize 12 \
 		-tfontsize 10 \
 		-xlabel "" \
-		-ylabel "CPU Seconds (Unit 1M)" \
+		-ylabel "CPU Minutes (Unit 1M)" \
 		-dateformat '%y/%m' \
 		-thickness 2 \
 		-style lines \
