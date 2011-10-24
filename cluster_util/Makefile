@@ -1,12 +1,10 @@
-GPLOT=/home/schelcj/src/gplot-1.3
-
 all: clean report plot ps2pdf
 
 report:
 	perl ./report.pl
 
 plot:
-	$(GPLOT)/gplot.pl \
+	gplot.pl \
 		-type ps \
 		-title "Biostatistics Cluster Utilization for the last year" \
 		-outfile chart.ps \
