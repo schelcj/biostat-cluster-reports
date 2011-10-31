@@ -1,0 +1,8 @@
+Total Cluster Utilization for (2010-10-01 - 2011-10-31)
+-------------------------------------------------------
+Allocated                                     34.08%
+Down                                          0.46%
+Plnd_down                                     2.44%
+Idle                                          61.75%
+Reserved                                      1.27%
+Reported                                      100.00%
