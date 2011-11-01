@@ -32,7 +32,7 @@ sub get_usage {
     chomp;
     my %result = ();
     @result{@headers} = split(/[|]/);
-    next if $result{account} eq q{biostat};
+    next if $result{account} =~ /biostat|root/;
     push @results, \%result;
   }
 
