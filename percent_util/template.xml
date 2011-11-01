@@ -2,12 +2,12 @@
   <worksheet name="Total Cluster Utilization">
     <format bg_color="silver" bold="1">
       <row>
-        <cell width="45%"><var name="caption"/></cell>
+        <cell width="100%"><var name="caption"/></cell>
         <cell />
       </row>
       <row>
-        <cell>Time</cell>
-        <cell width="25%">Percentage of Reported Time</cell>
+        <cell width="35%">Time</cell>
+        <cell width="35%">Percentage of Reported Time</cell>
       </row>
     </format>
 
