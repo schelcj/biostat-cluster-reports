@@ -2,14 +2,14 @@
   <worksheet name="Top Usage by User">
     <format bg_color="silver" bold="1">
       <row>
-        <cell>Top User Usage - Last 90 days</cell>
+        <cell width="50%">Top User Usage - Last 90 days</cell>
         <cell />
         <cell />
       </row>
       <row>
-        <cell>User</cell>
-        <cell>Account</cell>
-        <cell>CPU Minutes</cell> 
+        <cell width="20%">User</cell>
+        <cell width="20%">Account</cell>
+        <cell width="20%">CPU Minutes</cell> 
       </row>
     </format>
 
