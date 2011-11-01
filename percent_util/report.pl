@@ -12,7 +12,7 @@ my $report_cmd  = q{sreport -P -n cluster util start=%s end=%s};
 my @headers     = (qw(cluster allocated down plnd_down idle reserved reported));
 my $yaxis_scale = 1_000_000;
 my $date_format = q{%Y-%m-%d};
-my $report      = 'report.xls';
+my $report      = 'percent_util.xls';
 
 my $now        = Class::Date->now();
 my $excel      = Excel::Template->new(filename => $template);

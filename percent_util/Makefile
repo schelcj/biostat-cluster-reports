@@ -1,7 +1,7 @@
 all: clean report
 
 report:
-	perl ./report.pl > report.txt
+	perl ./report.pl
 
 clean:
-	rm -f *.txt
+	rm -f *.xls
