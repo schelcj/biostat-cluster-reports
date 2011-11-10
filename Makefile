@@ -13,3 +13,4 @@ compile:
 	cp cluster_util/chart.pdf reports/
 	cp top_usage/top_usage.xls reports/
 	cp percent_util/percent_util.xls reports/
+	cp percent_util/percent_util_by_month.xls reports/

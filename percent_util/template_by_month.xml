@@ -1,0 +1,32 @@
+<workbook>
+  <worksheet name="Total Cluster Utilization">
+    <format bg_color="silver" bold="1">
+      <row>
+        <cell><var name="caption"/></cell>
+        <cell />
+      </row>
+      <row>
+        <cell>Period</cell>
+        <cell>Allocated</cell>
+        <cell>Down</cell>
+        <cell>Planned Down</cell>
+        <cell>Idle</cell>
+        <cell>Reserved</cell>
+        <cell>Reported</cell>
+      </row>
+    </format>
+
+    <loop name="results">
+      <row>
+        <cell><var name="period"/></cell>
+        <cell><var name="allocated"/></cell>
+        <cell><var name="down"/></cell>
+        <cell><var name="plnd_down"/></cell>
+        <cell><var name="idle"/></cell>
+        <cell><var name="reserved"/></cell>
+        <cell><var name="reported"/></cell>
+      </row>
+    </loop>
+  </worksheet>
+</workbook>
+
