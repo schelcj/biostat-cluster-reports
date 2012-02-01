@@ -2,21 +2,22 @@
   <worksheet name="Idle and Wait Time">
     <format bg_color="silver" bold="1">
       <row>
-        <cell>Report Period: <var name="start_date"/> - <var name="end_date"/></cell>
-      </row>
-      <row>
+        <cell>Date Range</cell>
         <cell>Total Users</cell>
-        <cell>Average Waittime</cell>
-        <cell>Total Idle Time</cell>
+        <cell>Average Waittime (wallclock mins)</cell>
+        <cell>Total Idle Time (cpu mins)</cell>
         <cell>Percentage of Total Time</cell>
       </row>
     </format>
 
-    <row>
-      <cell><var name="total_users"/></cell>
-      <cell><var name="avg_wait"/> mins.</cell>
-      <cell><var name="idle_time"/> cpu mins.</cell>
-      <cell><var name="idle_perc"/></cell>
-    </row>
+    <loop name="results">
+      <row>
+        <cell><var name="start_date"/> - <var name="end_date"/></cell>
+        <cell><var name="total_users"/></cell>
+        <cell><var name="avg_wait"/></cell>
+        <cell><var name="idle_time"/></cell>
+        <cell><var name="idle_perc"/></cell>
+      </row>
+    </loop>
   </worksheet>
 </workbook>
