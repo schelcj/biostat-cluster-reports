@@ -17,7 +17,7 @@ Readonly::Scalar my $PIPE        => q{|};
 Readonly::Scalar my $DATE_FORMAT => q{%Y-%m-%d};
 Readonly::Scalar my $TEMPLATE    => q{template.xml};
 Readonly::Scalar my $REPORT      => q{wait_idle_time.xls};
-Readonly::Scalar my $MAX_MONTHS  => 12;
+Readonly::Scalar my $MAX_WEEKS   => 12;
 
 Readonly::Scalar my $SACCT_CMD    => sprintf q{sacct -a -n -X -s cd -P -o %s -S %%s -E %%s}, join($COMMA, @SACCT_HEADERS);
 Readonly::Scalar my $SREPORT_CMD  => q{sreport -n -P cluster util start=%s end=%s};
@@ -25,27 +25,29 @@ Readonly::Scalar my $SACCTMGR_CMD => q{sacctmgr -n -P show users};
 
 my $excel       = Excel::Template->new(filename => $TEMPLATE);
 my $now         = Class::Date->now();
-my $start_date  = $now - '1M';
+my $start_date  = $now - '7D';
 my $end_date    = $now;
 my $total_users = get_total_users();
 my $params      = {};
+my @results     = ();
 
-for (1..$MAX_MONTHS) {
+for (1..$MAX_WEEKS) {
   my $avg_wait = get_avg_wait_time($start_date,$end_date);
   my $idle_ref = get_total_idle_time($start_date,$end_date);
 
-  push @{$params->{results}}, {
+  push @results, {
     total_users => $total_users,
     avg_wait    => $avg_wait,
     idle_time   => $idle_ref->{time},
     idle_perc   => $idle_ref->{percent},
     start_date  => $start_date->strftime($DATE_FORMAT),
-    end_date    => $end_date->strftime($DATE_FORMAT),
   };
 
-  $start_date = $start_date - '1M';
-  $end_date   = $end_date   - '1M';
+  $start_date = $start_date - '7D';
+  $end_date   = $end_date   - '7D';
 }
+
+@{$params->{results}} = sort {$a->{start_date} cmp $b->{start_date}} @results;
 
 $excel->param($params);
 $excel->write_file($REPORT);
