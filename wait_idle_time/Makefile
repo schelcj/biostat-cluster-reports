@@ -4,4 +4,4 @@ report:
 	perl ./report.pl
 
 clean:
-	rm -f *.xls
+	rm -f *.xls *.dat
