@@ -3,8 +3,9 @@
     <format bg_color="silver" bold="1">
       <row>
         <cell>Date</cell>
-        <cell>Total Users</cell>
         <cell>Average Waittime (wallclock mins)</cell>
+        <cell>Average Job Duration (wallclock mins)</cell>
+        <cell>Total Number of Jobs</cell>
         <cell>Total Idle Time (cpu mins)</cell>
         <cell>Percentage of Total Time</cell>
       </row>
@@ -13,11 +14,21 @@
     <loop name="results">
       <row>
         <cell><var name="start_date"/></cell>
-        <cell><var name="total_users"/></cell>
         <cell><var name="avg_wait"/></cell>
+        <cell><var name="avg_job_duration"/></cell>
+        <cell><var name="total_jobs"/></cell>
         <cell><var name="idle_time"/></cell>
         <cell><var name="idle_perc"/></cell>
       </row>
     </loop>
+
+    <row></row>
+
+    <format bold="1">
+      <row>
+        <cell>Total Users</cell>
+        <cell><var name="total_users"/></cell>
+      </row>
+    </format>
   </worksheet>
 </workbook>
