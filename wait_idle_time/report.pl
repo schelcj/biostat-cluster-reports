@@ -8,10 +8,12 @@ use System::Command;
 use Readonly;
 use Excel::Template;
 use File::Slurp qw(write_file append_file);
+use Class::CSV;
 
 Readonly::Array my @SACCT_HEADERS    => (qw(jobid user submit start end));
 Readonly::Array my @SREPORT_HEADERS  => (qw(clst alloc down plnd_down idle resv rep));
 Readonly::Array my @SACCTMGR_HEADERS => (qw(name account admin));
+Readonly::Array my @R_DATA_HEADERS   => (qw(start_date avg_wait avg_job_duration total_jobs));
 
 Readonly::Scalar my $COMMA       => q{,};
 Readonly::Scalar my $PIPE        => q{|};
@@ -19,19 +21,19 @@ Readonly::Scalar my $DATE_FORMAT => q{%Y-%m-%d};
 Readonly::Scalar my $TEMPLATE    => q{template.xml};
 Readonly::Scalar my $REPORT      => q{wait_idle_time.xls};
 Readonly::Scalar my $MAX_WEEKS   => 12;
+Readonly::Scalar my $R_DATA_FILE => q{waittime.dat};
 
 Readonly::Scalar my $SACCT_CMD    => sprintf q{sacct -a -n -X -s cd -P -o %s -S %%s -E %%s}, join($COMMA, @SACCT_HEADERS);
 Readonly::Scalar my $SREPORT_CMD  => q{sreport -n -P cluster util start=%s end=%s};
 Readonly::Scalar my $SACCTMGR_CMD => q{sacctmgr -n -P show users};
 
-my $excel       = Excel::Template->new(filename => $TEMPLATE);
 my $now         = Class::Date->now();
 my $start_date  = $now - '7D';
 my $end_date    = $now;
 my $total_users = get_total_users();
 my @results     = ();
 my $params      = {
-  total_users   => get_total_users(),
+  total_users   => $total_users,
 };
 
 for (1 .. $MAX_WEEKS) {
@@ -55,11 +57,35 @@ for (1 .. $MAX_WEEKS) {
 
 @{$params->{results}} = sort {$a->{start_date} cmp $b->{start_date}} @results;
 
-write_file('waittime.dat', qq{Date\tSeconds\n});
-map { append_file('waittime.dat', qq($_->{start_date}\t$_->{avg_wait}\n)) } @{$params->{results}};
+write_r_data();
+write_excel();
 
-$excel->param($params);
-$excel->write_file($REPORT);
+exit;
+
+sub write_excel {
+  my $excel = Excel::Template->new(filename => $TEMPLATE);
+
+  $excel->param($params);
+  $excel->write_file($REPORT);
+
+  return;
+}
+
+sub write_r_data {
+  my $r_dat = Class::CSV->new(fields => \@R_DATA_HEADERS);
+  my $header_row = {map { $_ => $_} @R_DATA_HEADERS};
+
+  $r_dat->add_line($header_row);
+
+  foreach my $result (@{$params->{results}}) {
+    my $result_row = {map {$_ => $result->{$_}} @R_DATA_HEADERS};
+    $r_dat->add_line($result_row);
+  }
+
+  write_file($R_DATA_FILE, $r_dat->string());
+
+  return;
+}
 
 sub get_avg_wait_time {
   my ($start, $end) = @_;
