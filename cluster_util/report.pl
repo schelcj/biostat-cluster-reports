@@ -5,7 +5,8 @@
 use Modern::Perl;
 use Class::Date;
 use System::Command;
-use File::Slurp qw(append_file);
+use File::Slurp qw(write_file);
+use Class::CSV;
 
 my $now         = Class::Date->now();
 my $report_cmd  = q{sreport -P -n cluster util start=%s end=%s};
@@ -13,6 +14,8 @@ my @headers     = (qw(cluster allocated down plnd_down idle reserved reported));
 my %files       = map {$_ => qq{${_}.data}} @headers;
 my $util_ref    = {};
 my $yaxis_scale = 1_000_000;
+my $r_data_file = q{cluster_util.dat};
+my $r_dat       = Class::CSV->new(fields => ['date', @headers]);
 
 for (1 .. 12) {
   my $start       = $now->month_begin->strftime('%Y-%m-%d');
@@ -25,15 +28,15 @@ for (1 .. 12) {
   $now -= '1M';
 }
 
+$r_dat->add_line({map {$_ => $_} ('date', @headers)});
+
 foreach my $date (sort keys %{$util_ref}) {
   (my $xaxis_label = $date) =~ s/\d{2}(\d{2})\-(\d{2})\-\d{2}/$1\/$2/g;
-
-  foreach my $dpoint (keys %{$util_ref->{$date}}) {
-    my $data_point = $util_ref->{$date}->{$dpoint} / $yaxis_scale;
-
-    append_file($files{$dpoint}, qq#$xaxis_label $data_point\n#)
-  }
+  my $row = {date => $date, map {$_ => $util_ref->{$date}->{$_}} @headers};
+  $r_dat->add_line($row);
 }
+
+write_file($r_data_file, $r_dat->string());
 
 sub get_util {
   my ($command) = @_;
