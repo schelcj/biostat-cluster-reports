@@ -1,30 +1,10 @@
-all: clean report plot ps2pdf
+all: clean report plot
 
 report:
 	perl ./report.pl
 
 plot:
-	gplot.pl \
-		-type ps \
-		-title "Biostatistics Cluster Utilization for the last year" \
-		-outfile chart.ps \
-		-font 'helvetica' \
-		-fontsize 12 \
-		-tfontsize 10 \
-		-xlabel "" \
-		-ylabel "CPU Minutes (Unit 1M)" \
-		-dateformat '%y/%m' \
-		-thickness 2 \
-		-style lines \
-		-color blue    -name Idle           idle.data \
-		-color red     -name Reserved       reserved.data \
-		-color green   -name Reported       reported.data \
-		-color cyan    -name Allocated      allocated.data  \
-		-color black   -name Down           down.data \
-		-color magenta -name 'Planned Down' plnd_down.data
+	Rscript ./cluster_util.R 1>/dev/null
 
 clean:
-	rm -f *.data chart.ps chart.png
-
-ps2pdf:
-	ps2pdf chart.ps
+	rm -f *.dat *.png
