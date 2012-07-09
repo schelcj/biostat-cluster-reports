@@ -14,7 +14,7 @@ lines(util_data$reserved,  type="o", lty=5, pch=24, col=line_colors[5])
 lines(util_data$reported,  type="o", lty=6, pch=25, col=line_colors[6])
 
 axis(1, 1:12, lab=F)
-text(axTicks(1), par("usr")[3] - 2, pos=1, offset=1.0, srt=0, adj=1, labels=util_data$date, xpd=T, cex=0.7)
+text(axTicks(1), par("usr")[3] - 2, pos=1, offset=1.0, srt=0, adj=1, labels=util_data$date[seq(1,12,2)], xpd=T, cex=0.7)
 axis(2, las=1, cex.axis=0.8)
 
 title('Cluster Utilization')
