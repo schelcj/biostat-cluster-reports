@@ -1,4 +1,4 @@
-all: cluster_util_report top_usage_report percent_util_report wait_idle_time_report compile
+all: clean cluster_util_report top_usage_report percent_util_report wait_idle_time_report compile
 
 cluster_util_report: 
 	$(MAKE) -C cluster_util/
@@ -13,8 +13,9 @@ wait_idle_time_report:
 	$(MAKE) -C wait_idle_time/
 
 compile:
-	cp cluster_util/chart.pdf reports/
-	cp top_usage/top_usage.xls reports/
-	cp percent_util/percent_util.xls reports/
-	cp percent_util/percent_util_by_month.xls reports/
-	cp wait_idle_time/wait_idle_time.xls reports/
+	find ./ -name '*.pdf' -exec cp {} reports/ \;
+	find ./ -name '*.xls' -exec cp {} reports/ \;
+	cd reports ; pdflatex ./plot.tex 1>/dev/null
+
+clean:
+	rm reports/*.pdf reports/*.xls reports/*.dvi reports/*.aux reports/*.log

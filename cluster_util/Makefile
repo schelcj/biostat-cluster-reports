@@ -7,4 +7,4 @@ plot:
 	Rscript ./plot.R 1>/dev/null
 
 clean:
-	rm -f *.dat *.eps
+	rm -f *.dat *.eps *.pdf

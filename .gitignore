@@ -5,3 +5,5 @@
 *.xls
 *.dat
 *.eps
+*.aux
+*.log
