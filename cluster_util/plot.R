@@ -2,7 +2,7 @@ line_colors <- c("brown","chocolate","maroon","green","red","blue")
 util_data   <- read.table('cluster_util.dat', header=T, sep=",")
 u_range     <- range(0, util_data$allocated, util_data$down, util_data$plnd_down, util_data$idle, util_data$reserved, util_data$reported)
 
-png(filename="cluster_util.png", bg="white")
+postscript("cluster_util.eps")
 
 plot(util_data$allocated,  type="o", lty=1, pch=20, ann=F, axes=F, ylim=u_range, col=line_colors[1])
 lines(util_data$down,      type="o", lty=2, pch=21, col=line_colors[2])

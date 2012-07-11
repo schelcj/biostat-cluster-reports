@@ -4,7 +4,7 @@ report:
 	perl ./report.pl
 
 plot:
-	Rscript ./cluster_util.R 1>/dev/null
+	Rscript ./plot.R 1>/dev/null
 
 clean:
-	rm -f *.dat *.png
+	rm -f *.dat *.eps
