@@ -4,7 +4,7 @@ report:
 	perl ./report.pl
 
 clean:
-	rm -f *.xls *.dat *.png
+	rm -f *.xls *.dat *.eps
 
 plot:
-	Rscript ./waittime.R 1>/dev/null
+	Rscript ./plot.R 1>/dev/null

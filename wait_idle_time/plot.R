@@ -1,9 +1,7 @@
 wait_data <- read.table('waittime.dat', header=T, sep=",")
 w_range <- range(0, wait_data$avg_wait, wait_data$avg_job_duration)
 
-png(filename="waittime.png", bg="white", height=900, width=800)
-par(mfrow=c(2,1))
-
+postscript("wait_time.eps")
 plot(wait_data$avg_wait, type="o", col="blue", ann=F, axes=F, cex.lab=0.8)
 axis(1, 1:12, lab=F)
 text(axTicks(1), par("usr")[3] - 2, pos=1, offset=1.0, srt=0, adj=1, labels=wait_data$start_date[seq(1,12,2)], xpd=T, cex=0.7)
@@ -13,7 +11,9 @@ title("Waittime")
 title(ylab="Wallclock Minutes", font.main="3", col.lab=rgb(0,0.5,0))
 legend(1, w_range[2], c("Avg Job Wait","Avg Job Duration"), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2)
 box()
+dev.off()
 
+postscript("total_jobs.eps")
 plot(wait_data$total_jobs, type="o", col="blue", axes=F, ann=F)
 axis(1, 1:12, lab=F)
 text(axTicks(1), par("usr")[3] - 2, pos=1, offset=1.0, srt=0, adj=1, labels=wait_data$start_date[seq(1,12,2)], xpd=T, cex=0.7)
@@ -21,5 +21,4 @@ axis(2, las=1, cex.axis=0.8)
 title("Total Jobs Submitted")
 title(ylab="Jobs", font.main="3", col.lab=rgb(0,0.5,0))
 box()
-
 dev.off()
