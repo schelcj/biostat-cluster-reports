@@ -13,9 +13,11 @@ wait_idle_time_report:
 	$(MAKE) -C wait_idle_time/
 
 compile:
-	find ./ -name '*.pdf' -exec cp {} reports/ \;
-	find ./ -name '*.xls' -exec cp {} reports/ \;
+	cp cluster_util/*.pdf reports/
+	cp top_usage/*.xls reports/
+	cp percent_util/*.xls reports/
+	cp wait_idle_time/{*.pdf,*.xls} reports/
 	cd reports ; pdflatex ./plot.tex 1>/dev/null
 
 clean:
-	rm reports/*.pdf reports/*.xls reports/*.dvi reports/*.aux reports/*.log
+	rm -f reports/*.pdf reports/*.xls reports/*.dvi reports/*.aux reports/*.log
