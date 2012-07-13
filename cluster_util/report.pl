@@ -11,7 +11,6 @@ use Class::CSV;
 my $now         = Class::Date->now();
 my $report_cmd  = q{sreport -P -n cluster util start=%s end=%s};
 my @headers     = (qw(cluster allocated down plnd_down idle reserved reported));
-my %files       = map {$_ => qq{${_}.data}} @headers;
 my $util_ref    = {};
 my $yaxis_scale = 1_000_000;
 my $r_data_file = q{cluster_util.dat};
