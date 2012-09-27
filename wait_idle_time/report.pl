@@ -102,6 +102,7 @@ sub get_avg_wait_time {
     $total_wait += $diff->min;
   }
 
+  return 0 if scalar @results <= 0;
   return sprintf '%.0f', $total_wait / scalar @results;
 }
 
@@ -120,6 +121,7 @@ sub get_avg_job_duration {
     $total_duration += $diff->min;
   }
 
+  return 0 if scalar @results <= 0;
   return sprintf '%.0f', $total_duration / scalar @results;
 }
 
@@ -137,7 +139,11 @@ sub get_total_idle_time {
 
   my $command = sprintf $SREPORT_CMD, $start->strftime($DATE_FORMAT), $end->strftime($DATE_FORMAT);
   my ($results) = _get_results($command, @SREPORT_HEADERS);
-  my $percent = sprintf '%.2f', (($results->{idle} / $results->{rep}) * 100);    ## no critic (ProhibitMagicNumbers)
+
+  my $percent = 0;
+  if ( $results->{rep} ) {
+    $percent = sprintf '%.2f', (($results->{idle} / $results->{rep}) * 100);    ## no critic (ProhibitMagicNumbers)
+  }
 
   return {'time' => $results->{idle}, 'percent' => $percent};
 }
