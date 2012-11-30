@@ -1,0 +1,43 @@
+\documentclass[11 pt]{article}
+\oddsidemargin0cm
+\topmargin-2cm
+\textwidth16.5cm
+\textheight23.5cm
+\renewcommand{\part}[1] {\vspace{.10in} {\bf (#1)}}
+
+\pagestyle{empty}
+
+\usepackage{graphicx,amsmath,subfig,epstopdf}
+
+\begin{document}
+
+\begin{center}
+Biostatistics Cluster Usage
+\end{center}
+
+\medskip
+
+\begin{figure}[h!]
+\subfloat[Cluster Utilization]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{cluster_util.pdf}}
+\subfloat[Average Job Waittime]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{wait_time.pdf}} \\
+\subfloat[Total Jobs]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{total_jobs.pdf}}
+\end{figure}
+
+\pagebreak
+
+\begin{table}[c]
+  \centering
+  \begin{tabular}{| r | c |}
+    \hline
+    \bf{<tmpl_var name="pu_col1_hd">} & \bf{<tmpl_var name="pu_col2_hd">} \\
+    \hline
+    <tmpl_loop name="pu_results">
+    <tmpl_var name="col1"> & <tmpl_var name="col2"> \\
+    \hline
+    </tmpl_loop>
+    \hline
+  \end{tabular}
+  \caption{<tmpl_var name="pu_title">}
+\end{table}
+
+\end{document}
