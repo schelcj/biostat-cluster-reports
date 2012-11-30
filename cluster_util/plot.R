@@ -16,7 +16,7 @@ text(axTicks(1), par("usr")[3] - 2, pos=1, offset=1.0, srt=0, adj=1, labels=util
 axis(2, at=axTicks(2), labels=c("0","5","10","15","20", "25", "30", "35"), cex=0.8, tick=TRUE, line=NA, pos=NA)
 
 title(ylab=expression(paste("CPU Minutes ",10^6,sep="")))
-legend(8, u_range[2], c("Allocated", "Down", "Planned Down", "Idle", "Reserved", "Reported"), col=line_colors, lty=1:6, pch=20:25)
+legend(1, u_range[2], c("Allocated", "Down", "Planned Down", "Idle", "Reserved", "Reported"), col=line_colors, lty=1:6, pch=20:25)
 box()
 
 dev.off()
