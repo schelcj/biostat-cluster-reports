@@ -30,8 +30,11 @@ for (1 .. 12) {
 $r_dat->add_line({map {$_ => $_} ('date', @headers)});
 
 foreach my $date (sort keys %{$util_ref}) {
+  my $result_ref   = $util_ref->{$date};
   (my $xaxis_label = $date) =~ s/\d{2}(\d{2})\-(\d{2})\-\d{2}/$1\/$2/g;
-  my $row = {date => $date, map {$_ => $util_ref->{$date}->{$_}} @headers};
+
+  my $row = {date => $date, map {$_ => (exists $result_ref->{$_}) ? $result_ref->{$_} : 0} @headers};
+
   $r_dat->add_line($row);
 }
 
