@@ -25,6 +25,21 @@ Biostatistics Cluster Usage
 
 \pagebreak
 
+\begin{description}
+  \item[Allocated] \hfill \\
+  Amount of time allocated to jobs
+  \item[Down] \hfill \\
+  Amount of time the cluster was down/offline for an unknown planned outage
+  \item[Planned Down] \hfill \\
+  Amount of time the cluster was down/offline for a scheduled outage
+  \item[Idle] \hfill \\
+  Amount of time the cluster as idle(ie; resources available but no jobs submitted)
+  \item[Reserved] \hfill \\
+  Amount of time that a job was waiting for resources after the job had become eligible
+  \item[Reported] \hfill \\
+  Total amount of time during the report date range
+\end{description}
+
 \begin{table}
   \centering
   \begin{tabular}{| r | l | l | l | l | l | l |}
@@ -46,11 +61,27 @@ Biostatistics Cluster Usage
     \bf{<tmpl_var name="pu_col1_hd">} & \bf{<tmpl_var name="pu_col2_hd">} \\
     \hline
     <tmpl_loop name="pu_results">
-    <tmpl_var name="col1"> & <tmpl_var name="col2"> \\
-    \hline
+      <tmpl_var name="col1"> & <tmpl_var name="col2"> \\
+      \hline
     </tmpl_loop>
   \end{tabular}
   \caption{<tmpl_var name="pu_title">}
+\end{table}
+
+\pagebreak
+
+\begin{table}
+  \centering
+  \begin{tabular}{| l | l | l |}
+    \hline
+    \bf{<tmpl_var name="tu_col0_hd">} & \bf{<tmpl_var name="tu_col1_hd">} & \bf{<tmpl_var name="tu_col2_hd">} \\
+    \hline
+    <tmpl_loop name="tu_results">
+      <tmpl_var name="col0"> & <tmpl_var name="col1"> & <tmpl_var name="col2"> \\
+      \hline
+    </tmpl_loop>
+  \end{tabular}
+  \caption{<tmpl_var name="tu_title">}
 \end{table}
 
 

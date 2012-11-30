@@ -9,7 +9,8 @@ use Data::Dumper;
 my $tmpl      = HTML::Template->new(filename => 'report.tex.tmpl', global_vars => 1);
 my %pu        = get_percent_util();
 my %pum       = get_percent_util_by_month();
-my $param_ref = {%pu, %pum};
+my %tu        = get_top_usage();
+my $param_ref = {%pu, %pum, %tu};
 
 $tmpl->param($param_ref);
 
@@ -66,6 +67,38 @@ sub get_percent_util_by_month {
     }
 
     $results{pum_title} = $worksheet->get_cell(0,0)->value();
+  }
+
+  return %results;
+}
+
+sub get_top_usage {
+  my $parser   = Spreadsheet::ParseExcel->new();
+  my $workbook = $parser->parse('top_usage.xls');
+  my %results  = ();
+
+  for my $worksheet ($workbook->worksheets()) {
+    my ($row_min, $row_max) = $worksheet->row_range();
+    my ($col_min, $col_max) = $worksheet->col_range();
+
+    for ($col_min .. $col_max) {
+      my $key = 'tu_col' . $_ . '_hd';
+      $results{$key} = $worksheet->get_cell(1,$_)->value();
+    }
+
+    for my $row (2 .. $row_max) {
+      my $col_ref = {};
+
+      for my $col ($col_min .. $col_max) {
+        $col_ref->{qq{col$col}} = $worksheet->get_cell($row,$col)->value();
+      }
+
+      push @{$results{tu_results}}, $col_ref;
+    }
+
+
+
+    $results{tu_title} = $worksheet->get_cell(0,0)->value();
   }
 
   return %results;
