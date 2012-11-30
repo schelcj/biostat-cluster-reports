@@ -27,7 +27,21 @@ Biostatistics Cluster Usage
 
 \begin{table}
   \centering
-  \begin{tabular}{| r | c |}
+  \begin{tabular}{| r | l | l | l | l | l | l |}
+    \hline
+    \bf{<tmpl_var name="pum_col0_hd">} & \bf{<tmpl_var name="pum_col1_hd">} & \bf{<tmpl_var name="pum_col2_hd">} & \bf{<tmpl_var name="pum_col3_hd">} & \bf{<tmpl_var name="pum_col4_hd">} & \bf{<tmpl_var name="pum_col5_hd">} & \bf{<tmpl_var name="pum_col6_hd">} \\
+    \hline
+    <tmpl_loop name="pum_results">
+      <tmpl_var name="col0"> & <tmpl_var name="col1"> & <tmpl_var name="col2"> & <tmpl_var name="col3"> & <tmpl_var name="col4"> & <tmpl_var name="col5"> & <tmpl_var name="col6"> \\ 
+      \hline
+    </tmpl_loop>
+  \end{tabular}
+  \caption{<tmpl_var name="pum_title">}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{| r | l |}
     \hline
     \bf{<tmpl_var name="pu_col1_hd">} & \bf{<tmpl_var name="pu_col2_hd">} \\
     \hline
@@ -35,9 +49,9 @@ Biostatistics Cluster Usage
     <tmpl_var name="col1"> & <tmpl_var name="col2"> \\
     \hline
     </tmpl_loop>
-    \hline
   \end{tabular}
   \caption{<tmpl_var name="pu_title">}
 \end{table}
+
 
 \end{document}
