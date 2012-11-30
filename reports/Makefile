@@ -1,5 +1,5 @@
 all: compile
 
 compile:
-	./compile.pl > report.tex
+	./compile.pl
 	pdflatex report.tex
