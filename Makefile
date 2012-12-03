@@ -18,6 +18,7 @@ compile:
 	cp percent_util/*.xls reports/
 	cp wait_idle_time/{*.pdf,*.xls} reports/
 	cd reports ; pdflatex ./plot.tex 1>/dev/null
+	$(MAKE) -C reports/
 
 clean:
 	rm -f reports/*.pdf reports/*.xls reports/*.dvi reports/*.aux reports/*.log
