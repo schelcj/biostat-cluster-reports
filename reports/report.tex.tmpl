@@ -11,11 +11,11 @@
 
 \begin{document}
 
-\begin{center}
-Biostatistics Cluster Usage
-\end{center}
+\title{Biostatistics Cluster Usage}
+\date{<tmpl_var name="date">}
+\maketitle
 
-\medskip
+\pagebreak
 
 \begin{figure}[h!]
 \subfloat[Cluster Utilization]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{cluster_util.pdf}}
@@ -29,7 +29,7 @@ Biostatistics Cluster Usage
   \item[Allocated] \hfill \\
   Amount of time allocated to jobs
   \item[Down] \hfill \\
-  Amount of time the cluster was down/offline for an unknown planned outage
+  Amount of time the cluster was down/offline for an unplanned outage
   \item[Planned Down] \hfill \\
   Amount of time the cluster was down/offline for a scheduled outage
   \item[Idle] \hfill \\
@@ -39,6 +39,8 @@ Biostatistics Cluster Usage
   \item[Reported] \hfill \\
   Total amount of time during the report date range
 \end{description}
+
+\pagebreak
 
 \begin{table}
   \centering
@@ -84,5 +86,20 @@ Biostatistics Cluster Usage
   \caption{<tmpl_var name="tu_title">}
 \end{table}
 
+\pagebreak
+
+\begin{table}
+  \centering
+  \begin{tabular}{| l | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} |}
+    \hline
+    \bf{<tmpl_var name="wit_col0_hd">} & \bf{<tmpl_var name="wit_col1_hd">} & \bf{<tmpl_var name="wit_col2_hd">} & \bf{<tmpl_var name="wit_col3_hd">} & \bf{<tmpl_var name="wit_col4_hd">} & \bf{<tmpl_var name="wit_col5_hd">} \\
+    \hline
+    <tmpl_loop name="wit_results">
+      <tmpl_var name="col0"> & <tmpl_var name="col1"> & <tmpl_var name="col2"> & <tmpl_var name="col3"> & <tmpl_var name="col4"> & <tmpl_var name="col5"> \\
+      \hline
+    </tmpl_loop>
+  \end{tabular}
+  \caption{<tmpl_var name="wit_title">}
+\end{table}
 
 \end{document}
