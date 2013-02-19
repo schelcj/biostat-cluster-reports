@@ -1,0 +1,11 @@
+data    <- read.table('report.dat', header=T, sep=",")
+u_range <- range(0, data$total_jobs)
+
+pdf('report.pdf')
+plot(data$total_jobs,  type="o", lwd=2, lty=1, pch=NA, col="blue", ann=F, axes=F, ylim=u_range)
+axis(1, 1:52, lab=F)
+text(axTicks(1), par("usr")[3] - 2, pos=1, offset=1.0, srt=0, adj=1, labels=data$date[seq(1,52,9)], xpd=T, cex=0.8)
+axis(2, at=axTicks(2), labels=seq(0, length(axTicks(2))^2, 5), cex=0.8, tick=TRUE, line=NA, pos=NA)
+title(ylab="Jobs")
+box()
+dev.off()
