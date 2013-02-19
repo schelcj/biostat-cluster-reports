@@ -2,7 +2,7 @@
   <worksheet name="Top Usage by User">
     <format bg_color="silver" bold="1">
       <row>
-        <cell width="50%">Top User Usage - Last 90 days</cell>
+        <cell width="50%">Total usage by user - Last Year</cell>
         <cell />
         <cell />
       </row>
