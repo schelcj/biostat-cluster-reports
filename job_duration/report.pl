@@ -55,5 +55,6 @@ for (1 .. 52) {
   $end   -= $WEEK;
 }
 
+$csv->add_line({date => 'date', avg_duration => 'avg_duration'});
 map {$csv->add_line($_)} reverse @results;
 write_file($DATA_FILE, $csv->string());
