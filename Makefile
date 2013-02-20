@@ -1,4 +1,4 @@
-all: clean cluster_util_report top_usage_report percent_util_report wait_idle_time_report total_jobs_report compile
+all: clean cluster_util_report top_usage_report percent_util_report wait_idle_time_report total_jobs_report job_duration_report compile
 
 cluster_util_report: 
 	$(MAKE) -C cluster_util/
@@ -14,6 +14,9 @@ wait_idle_time_report:
 
 total_jobs_report:
 	$(MAKE) -C total_jobs/
+
+job_duration_report:
+	$(MAKE) -C job_duration/
 
 compile:
 	cp cluster_util/*.pdf reports/
