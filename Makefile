@@ -31,3 +31,9 @@ compile:
 
 clean:
 	rm -f reports/*.pdf reports/*.xls reports/*.dvi reports/*.aux reports/*.log
+	$(MAKE) -C cluster_util/ clean
+	$(MAKE) -C top_usage/ clean
+	$(MAKE) -C percent_util/ clean
+	$(MAKE) -C wait_idle_time/ clean
+	$(MAKE) -C total_jobs/ clean
+	$(MAKE) -C job_duration/ clean
