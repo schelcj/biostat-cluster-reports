@@ -17,15 +17,19 @@
 
 \pagebreak
 
-\title{Cluster Utilization defintions}
-
 \begin{description}
-  \item[Allocated] Amount of time allocated to jobs
-  \item[Down] Amount of time the cluster was down/offline for an unplanned outage
-  \item[Planned Down] Amount of time the cluster was down/offline for a scheduled outage
-  \item[Idle] Amount of time the cluster as idle(ie; resources available but no jobs submitted)
-  \item[Reserved] Amount of time that a job was waiting for resources after the job had become eligible
-  \item[Reported] Total amount of time during the report date range
+  \item[Allocated] \hfill \\
+    Amount of time allocated to jobs
+  \item[Down] \hfill \\
+    Amount of time the cluster was down/offline for an unplanned outage
+  \item[Planned Down] \hfill \\
+    Amount of time the cluster was down/offline for a scheduled outage
+  \item[Idle] \hfill \\
+    Amount of time the cluster as idle(ie; resources available but no jobs submitted)
+  \item[Reserved] \hfill \\
+    Amount of time that a job was waiting for resources after the job had become eligible
+  \item[Reported] \hfill \\
+    Total amount of time during the report date range
 \end{description}
 
 \pagebreak
@@ -92,13 +96,15 @@
 
 \pagebreak
 
-\begin{figure}[h!]
-\subfloat[Cluster Utilization]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{cluster_util.pdf}}
-\subfloat[Average Job Waittime]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{wait_time.pdf}} \\
-\subfloat[Total Jobs]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{total_jobs.pdf}}
-\subfloat[Job Duration (a)]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{job_duration_line.pdf}} \\
-\subfloat[Job Duration (b)]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{job_duration_hist.pdf}}
-\subfloat[CPU Minutes per user]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{cpu_minutes.pdf}}
+\begin{figure}[ht!]
+  \subfloat[Cluster Utilization]{\includegraphics[scale=0.42]{cluster_util.pdf}}
+  \subfloat[Average Job Waittime]{\includegraphics[scale=0.42]{wait_time.pdf}} \\
+
+  \subfloat[Total Jobs]{\includegraphics[scale=0.42]{total_jobs.pdf}}
+  \subfloat[Job Duration]{\includegraphics[scale=0.42]{job_duration_line.pdf}} \\
+
+  \subfloat[Job Duration]{\includegraphics[scale=0.42]{job_duration_hist.pdf}}
+  \subfloat[CPU Minutes per user (log scale)]{\includegraphics[scale=0.42]{cpu_minutes.pdf}}
 \end{figure}
 
 \end{document}

@@ -21,6 +21,7 @@ job_duration_report:
 compile:
 	cp cluster_util/*.pdf reports/
 	cp top_usage/*.xls reports/
+	cp top_usage/*.pdf reports
 	cp percent_util/*.xls reports/
 	cp wait_idle_time/{*.pdf,*.xls} reports/
 	cp total_jobs/report.pdf reports/total_jobs.pdf
