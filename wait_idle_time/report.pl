@@ -20,7 +20,7 @@ Readonly::Scalar my $PIPE        => q{|};
 Readonly::Scalar my $DATE_FORMAT => q{%Y-%m-%d};
 Readonly::Scalar my $TEMPLATE    => q{template.xml};
 Readonly::Scalar my $REPORT      => q{wait_idle_time.xls};
-Readonly::Scalar my $MAX_WEEKS   => 12;
+Readonly::Scalar my $MAX_WEEKS   => 52;
 Readonly::Scalar my $R_DATA_FILE => q{waittime.dat};
 
 Readonly::Scalar my $SACCT_CMD    => sprintf q{sacct -a -n -X -s cd -P -o %s -S %%s -E %%s}, join($COMMA, @SACCT_HEADERS);
