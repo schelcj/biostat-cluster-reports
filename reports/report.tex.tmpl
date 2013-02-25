@@ -17,30 +17,32 @@
 
 \pagebreak
 
-\begin{figure}[h!]
-\subfloat[Cluster Utilization]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{cluster_util.pdf}}
-\subfloat[Average Job Waittime]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{wait_time.pdf}} \\
-\subfloat[Total Jobs]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{total_jobs.pdf}}
-\end{figure}
-
-\pagebreak
+\title{Cluster Utilization defintions}
 
 \begin{description}
-  \item[Allocated] \hfill \\
-  Amount of time allocated to jobs
-  \item[Down] \hfill \\
-  Amount of time the cluster was down/offline for an unplanned outage
-  \item[Planned Down] \hfill \\
-  Amount of time the cluster was down/offline for a scheduled outage
-  \item[Idle] \hfill \\
-  Amount of time the cluster as idle(ie; resources available but no jobs submitted)
-  \item[Reserved] \hfill \\
-  Amount of time that a job was waiting for resources after the job had become eligible
-  \item[Reported] \hfill \\
-  Total amount of time during the report date range
+  \item[Allocated] Amount of time allocated to jobs
+  \item[Down] Amount of time the cluster was down/offline for an unplanned outage
+  \item[Planned Down] Amount of time the cluster was down/offline for a scheduled outage
+  \item[Idle] Amount of time the cluster as idle(ie; resources available but no jobs submitted)
+  \item[Reserved] Amount of time that a job was waiting for resources after the job had become eligible
+  \item[Reported] Total amount of time during the report date range
 \end{description}
 
 \pagebreak
+
+\begin{table}
+  \centering
+  \begin{tabular}{| r | l |}
+    \hline
+    \bf{<tmpl_var name="pu_col1_hd">} & \bf{<tmpl_var name="pu_col2_hd">} \\
+    \hline
+    <tmpl_loop name="pu_results">
+      <tmpl_var name="col1"> & <tmpl_var name="col2"> \\
+      \hline
+    </tmpl_loop>
+  \end{tabular}
+  \caption{<tmpl_var name="pu_title">}
+\end{table}
 
 \begin{table}
   \centering
@@ -56,18 +58,20 @@
   \caption{<tmpl_var name="pum_title">}
 \end{table}
 
+\pagebreak
+
 \begin{table}
   \centering
-  \begin{tabular}{| r | l |}
+  \begin{tabular}{| l | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} |}
     \hline
-    \bf{<tmpl_var name="pu_col1_hd">} & \bf{<tmpl_var name="pu_col2_hd">} \\
+    \bf{<tmpl_var name="wit_col0_hd">} & \bf{<tmpl_var name="wit_col1_hd">} & \bf{<tmpl_var name="wit_col2_hd">} & \bf{<tmpl_var name="wit_col3_hd">} & \bf{<tmpl_var name="wit_col4_hd">} & \bf{<tmpl_var name="wit_col5_hd">} \\
     \hline
-    <tmpl_loop name="pu_results">
-      <tmpl_var name="col1"> & <tmpl_var name="col2"> \\
+    <tmpl_loop name="wit_results">
+      <tmpl_var name="col0"> & <tmpl_var name="col1"> & <tmpl_var name="col2"> & <tmpl_var name="col3"> & <tmpl_var name="col4"> & <tmpl_var name="col5"> \\
       \hline
     </tmpl_loop>
   \end{tabular}
-  \caption{<tmpl_var name="pu_title">}
+  \caption{<tmpl_var name="wit_title">}
 \end{table}
 
 \pagebreak
@@ -88,18 +92,13 @@
 
 \pagebreak
 
-\begin{table}
-  \centering
-  \begin{tabular}{| l | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} |}
-    \hline
-    \bf{<tmpl_var name="wit_col0_hd">} & \bf{<tmpl_var name="wit_col1_hd">} & \bf{<tmpl_var name="wit_col2_hd">} & \bf{<tmpl_var name="wit_col3_hd">} & \bf{<tmpl_var name="wit_col4_hd">} & \bf{<tmpl_var name="wit_col5_hd">} \\
-    \hline
-    <tmpl_loop name="wit_results">
-      <tmpl_var name="col0"> & <tmpl_var name="col1"> & <tmpl_var name="col2"> & <tmpl_var name="col3"> & <tmpl_var name="col4"> & <tmpl_var name="col5"> \\
-      \hline
-    </tmpl_loop>
-  \end{tabular}
-  \caption{<tmpl_var name="wit_title">}
-\end{table}
+\begin{figure}[h!]
+\subfloat[Cluster Utilization]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{cluster_util.pdf}}
+\subfloat[Average Job Waittime]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{wait_time.pdf}} \\
+\subfloat[Total Jobs]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{total_jobs.pdf}}
+\subfloat[Job Duration (a)]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{job_duration_line.pdf}} \\
+\subfloat[Job Duration (b)]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{job_duration_hist.pdf}}
+\subfloat[CPU Minutes per user]{\label{fig:gull}\includegraphics[width=0.5\textwidth]{cpu_minutes.pdf}}
+\end{figure}
 
 \end{document}

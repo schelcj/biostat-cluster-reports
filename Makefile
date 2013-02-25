@@ -24,6 +24,7 @@ compile:
 	cp percent_util/*.xls reports/
 	cp wait_idle_time/{*.pdf,*.xls} reports/
 	cp total_jobs/report.pdf reports/total_jobs.pdf
+	cp job_duration/*.pdf reports/
 	cd reports ; pdflatex ./plot.tex 1>/dev/null
 	$(MAKE) -C reports/
 
