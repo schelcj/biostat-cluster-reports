@@ -17,20 +17,33 @@
 
 \pagebreak
 
-\begin{description}
-  \item[Allocated] \hfill \\
-    Amount of time allocated to jobs
-  \item[Down] \hfill \\
-    Amount of time the cluster was down/offline for an unplanned outage
-  \item[Planned Down] \hfill \\
-    Amount of time the cluster was down/offline for a scheduled outage
-  \item[Idle] \hfill \\
-    Amount of time the cluster as idle(ie; resources available but no jobs submitted)
-  \item[Reserved] \hfill \\
-    Amount of time that a job was waiting for resources after the job had become eligible
-  \item[Reported] \hfill \\
-    Total amount of time during the report date range
-\end{description}
+\begin{table}
+  \centering
+  \begin{tabular}{r | l}
+    \hline
+      \bf{Allocated} & Amount of time allocated to jobs \\
+      \bf{Down} & Amount of time the cluster was down/offline for an unplanned outage \\
+      \bf{Planned Down} & Amount of time the cluster was down/offline for a scheduled outage \\
+      \bf{Idle} & Amount of time the cluster as idle(ie; resources available but no jobs submitted) \\
+      \bf{Reserved} & Amount of time that a job was waiting for resources after the job had become eligible \\
+      \bf{Reported} & Total amount of time during the report date range \\
+    \hline
+  \end{tabular}
+  \caption{Cluster Utilization Definitions}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{r | l}
+    \hline
+    \bf{Cores} & 360 Total cores with users limited to 65\% of those cores at one time \\
+    \bf{Nodes} & 27 Compute nodes \\
+    \bf{Storage} & 16TB of storage for user home directories \\
+    \bf{Users} & 40 Total users, 10 users from contributions \\
+    \hline
+  \end{tabular}
+  \caption{Cluster Specs}
+\end{table}
 
 \pagebreak
 
