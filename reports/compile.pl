@@ -111,6 +111,7 @@ sub get_wait_idle_time {
   my $parser   = Spreadsheet::ParseExcel->new();
   my $workbook = $parser->parse('wait_idle_time.xls');
   my %results  = ();
+  my @wit_results = ();
 
   for my $worksheet ($workbook->worksheets()) {
     my ($row_min, $row_max) = $worksheet->row_range();
@@ -121,18 +122,19 @@ sub get_wait_idle_time {
       $results{$key} = $worksheet->get_cell(0,$_)->value();
     }
 
-    for my $row (1 .. 12) {
+    for my $row (1 .. 52) {
       my $col_ref = {};
 
       for my $col ($col_min .. $col_max) {
         $col_ref->{qq{col$col}} = $worksheet->get_cell($row,$col)->value();
       }
 
-      push @{$results{wit_results}}, $col_ref;
+      push @wit_results, $col_ref;
     }
 
     $results{wit_title} = q{Average job waittime};
   }
 
+  @{$results{wit_results}} = reverse @wit_results;
   return %results;
 }
