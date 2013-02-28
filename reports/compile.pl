@@ -10,8 +10,7 @@ my $tmpl      = HTML::Template->new(filename => 'report.tex.tmpl', global_vars =
 my %pu        = get_percent_util();
 my %pum       = get_percent_util_by_month();
 my %tu        = get_top_usage();
-my %wit       = get_wait_idle_time();
-my $param_ref = {%pu, %pum, %tu, %wit};
+my $param_ref = {%pu, %pum, %tu};
 
 $param_ref->{date} = strftime('%B %Y', localtime());
 
@@ -104,37 +103,5 @@ sub get_top_usage {
     $results{tu_title} = $worksheet->get_cell(0, 0)->value();
   }
 
-  return %results;
-}
-
-sub get_wait_idle_time {
-  my $parser      = Spreadsheet::ParseExcel->new();
-  my $workbook    = $parser->parse('wait_idle_time.xls');
-  my %results     = ();
-  my @wit_results = ();
-
-  for my $worksheet ($workbook->worksheets()) {
-    my ($row_min, $row_max) = $worksheet->row_range();
-    my ($col_min, $col_max) = $worksheet->col_range();
-
-    for ($col_min .. $col_max) {
-      my $key = 'wit_col' . $_ . '_hd';
-      $results{$key} = $worksheet->get_cell(0, $_)->value();
-    }
-
-    for my $row (1 .. 52) {
-      my $col_ref = {};
-
-      for my $col ($col_min .. $col_max) {
-        $col_ref->{qq{col$col}} = $worksheet->get_cell($row, $col)->value();
-      }
-
-      push @wit_results, $col_ref;
-    }
-
-    $results{wit_title} = q{Average job waittime};
-  }
-
-  @{$results{wit_results}} = reverse @wit_results;
   return %results;
 }
