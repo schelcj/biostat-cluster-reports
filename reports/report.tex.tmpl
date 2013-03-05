@@ -63,6 +63,24 @@
 
 \begin{table}
   \centering
+  \begin{tabular}{| r | l | l |}
+    \hline
+    \bf{Percentile} & \bf{Job Waittime in minutes} & \bf{Job Duration in minutes} \\
+    \hline
+    25\% &  <tmpl_var name="quan_wit_first"> & <tmpl_var name="quan_dur_first"> \\
+    \hline
+    50\% &  <tmpl_var name="quan_wit_second"> & <tmpl_var name="quan_dur_second"> \\
+    \hline
+    75\% &  <tmpl_var name="quan_wit_third"> & <tmpl_var name="quan_dur_third"> \\
+    \hline
+    100\% & <tmpl_var name="quan_wit_fourth"> & <tmpl_var name="quan_dur_fourth"> \\
+    \hline
+  \end{tabular}
+  \caption{Percentile of job waittimes for last 30 days}
+\end{table}
+
+\begin{table}
+  \centering
   \begin{tabular}{| r | l | l | l | l | l | l |}
     \hline
     \bf{<tmpl_var name="pum_col0_hd">} & \bf{<tmpl_var name="pum_col1_hd">} & \bf{<tmpl_var name="pum_col2_hd">} & \bf{<tmpl_var name="pum_col3_hd">} & \bf{<tmpl_var name="pum_col4_hd">} & \bf{<tmpl_var name="pum_col5_hd">} & \bf{<tmpl_var name="pum_col6_hd">} \\
@@ -107,7 +125,7 @@
 \pagebreak
 
 \begin{figure}[ht!]
-  \subfloat[Duration vs Waittime for last 30 days]{\includegraphics[scale=0.42]{duration_vs_waittime.pdf}}
+  \subfloat[Duration vs Waittime for last 30 days]{\includegraphics{duration_vs_waittime.pdf}}
 \end{figure}
 
 \end{document}

@@ -5,12 +5,15 @@ use HTML::Template;
 use Spreadsheet::ParseExcel;
 use File::Slurp qw(write_file);
 use POSIX qw(strftime);
+use Class::CSV;
+use List::MoreUtils qw(part);
 
 my $tmpl      = HTML::Template->new(filename => 'report.tex.tmpl', global_vars => 1);
 my %pu        = get_percent_util();
 my %pum       = get_percent_util_by_month();
 my %tu        = get_top_usage();
-my $param_ref = {%pu, %pum, %tu};
+my %quat_wit  = get_quantile_waittime();
+my $param_ref = {%pu, %pum, %tu, %quat_wit};
 
 $param_ref->{date} = strftime('%B %Y', localtime());
 
@@ -102,6 +105,39 @@ sub get_top_usage {
 
     $results{tu_title} = $worksheet->get_cell(0, 0)->value();
   }
+
+  return %results;
+}
+
+sub get_quantile_waittime {
+  my $csv     = Class::CSV->parse(
+    filename => 'duration_vs_waittime.csv',
+    fields   => [qw(jobid waittime duration)]
+  );
+
+  my @lines = @{$csv->lines()};
+  shift @lines;
+
+  my ($i,$j)    = (0,0);
+  my @waittimes = sort {$a <=> $b} map {int($_->waittime * 60)} @lines;
+  my @durations = sort {$a <=> $b} map {int($_->duration * 60)} @lines;
+  my $quarter   = scalar @waittimes / 4;
+  my @wit_parts = part {int($i++ / $quarter)} @waittimes;
+  my @dur_parts = part {int($j++ / $quarter)} @durations;
+
+  my %results = (
+    quan_wit_first  => $wit_parts[0][-1],
+    quan_dur_first  => $dur_parts[0][-1],
+
+    quan_wit_second => $wit_parts[1][-1],
+    quan_dur_second => $dur_parts[1][-1],
+
+    quan_wit_third  => $wit_parts[2][-1],
+    quan_dur_third  => $dur_parts[2][-1],
+
+    quan_wit_fourth => $wit_parts[3][-1],
+    quan_dur_fourth => $dur_parts[3][-1],
+  );
 
   return %results;
 }

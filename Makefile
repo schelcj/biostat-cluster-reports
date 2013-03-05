@@ -30,6 +30,7 @@ compile:
 	cp total_jobs/report.pdf reports/total_jobs.pdf
 	cp job_duration/*.pdf reports/
 	cp duration_vs_waittime/report.pdf reports/duration_vs_waittime.pdf
+	cp duration_vs_waittime/report.dat reports/duration_vs_waittime.csv
 	cd reports ; pdflatex ./plot.tex 1>/dev/null
 	$(MAKE) -C reports/
 

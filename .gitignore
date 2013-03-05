@@ -7,4 +7,5 @@
 *.eps
 *.aux
 *.log
+*.csv
 report.tex
