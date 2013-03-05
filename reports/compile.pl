@@ -7,6 +7,7 @@ use File::Slurp qw(write_file);
 use POSIX qw(strftime);
 use Class::CSV;
 use List::MoreUtils qw(part);
+use Math::Round;
 
 my $tmpl      = HTML::Template->new(filename => 'report.tex.tmpl', global_vars => 1);
 my %pu        = get_percent_util();
@@ -119,8 +120,8 @@ sub get_quantile_waittime {
   shift @lines;
 
   my ($i,$j)    = (0,0);
-  my @waittimes = sort {$a <=> $b} map {int($_->waittime * 60)} @lines;
-  my @durations = sort {$a <=> $b} map {int($_->duration * 60)} @lines;
+  my @waittimes = sort {$a <=> $b} map {round($_->waittime * 60)} @lines;
+  my @durations = sort {$a <=> $b} map {round($_->duration * 60)} @lines;
   my $quarter   = scalar @waittimes / 4;
   my @wit_parts = part {int($i++ / $quarter)} @waittimes;
   my @dur_parts = part {int($j++ / $quarter)} @durations;
