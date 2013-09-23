@@ -34,3 +34,6 @@ lapply(users, plot_user)
 par(xpd=TRUE)
 legend(max(report$time_requested) - 11000, max(report$time_elapsed), colors$user, pch=19, cex=0.6, col=colors$color, ncol=(length(users) / 5))
 dev.off()
+
+# might want to do a hist later on
+# hist(report$time_requested - report$time_elapsed, breaks=50, col="lightblue", main="Job Time Estimation", xlab="Time")
