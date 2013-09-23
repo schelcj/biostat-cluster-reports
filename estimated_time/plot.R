@@ -32,6 +32,5 @@ plot_user <- function(uniqname) {
 
 lapply(users, plot_user)
 par(xpd=TRUE)
-legend(-1400, -1600, colors$user, pch=19, cex=0.8, col=colors$color, ncol=(length(users) / 2))
-
+legend(max(report$time_requested) - 11000, max(report$time_elapsed), colors$user, pch=19, cex=0.6, col=colors$color, ncol=(length(users) / 5))
 dev.off()
