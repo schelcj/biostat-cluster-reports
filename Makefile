@@ -1,4 +1,4 @@
-all: clean cluster_util_report top_usage_report percent_util_report wait_idle_time_report total_jobs_report job_duration_report duration_vs_waittime_report estimated_time_report compile
+all: clean cluster_util_report top_usage_report percent_util_report wait_idle_time_report total_jobs_report job_duration_report duration_vs_waittime_report compile
 
 cluster_util_report: 
 	$(MAKE) -C cluster_util/
@@ -34,7 +34,6 @@ compile:
 	cp job_duration/*.pdf reports/
 	cp duration_vs_waittime/report.pdf reports/duration_vs_waittime.pdf
 	cp duration_vs_waittime/report.dat reports/duration_vs_waittime.csv
-	cp estimated_time/report.pdf reports/
 	cd reports ; pdflatex ./plot.tex 1>/dev/null
 	$(MAKE) -C reports/
 
@@ -47,4 +46,3 @@ clean:
 	$(MAKE) -C total_jobs/ clean
 	$(MAKE) -C job_duration/ clean
 	$(MAKE) -C duration_vs_waittime/ clean
-	$(MAKE) -C estimated_time/ clean
